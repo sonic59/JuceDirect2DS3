@@ -303,7 +303,7 @@ public:
 
         const Direct2DFactories& factories = Direct2DFactories::getInstance();
         DirectWriteTypeLayout::drawToD2DContext (text, area, renderingTarget, factories.directWriteFactory,
-                                                 factories.d2dFactory, factories.systemFonts);
+                                                 factories.systemFonts);
 
         renderingTarget->SetTransform (D2D1::IdentityMatrix());
         return true;
@@ -728,7 +728,7 @@ private:
         return D2D1::ColorF::ColorF (c.getFloatRed(), c.getFloatGreen(), c.getFloatBlue(), c.getFloatAlpha());
     }
 
-    static D2D1_POINT_2F pointTransformed (int x, int y, const AffineTransform& transform)
+    static D2D1_POINT_2F pointTransformed (int x, int y, const AffineTransform& transform = AffineTransform::identity)
     {
         transform.transformPoint (x, y);
         return D2D1::Point2F ((FLOAT) x, (FLOAT) y);
